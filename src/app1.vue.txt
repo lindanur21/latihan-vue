@@ -1,0 +1,93 @@
+<script setup>
+import { ref } from 'vue'
+
+const msg = "Hello World"
+const rawHtml = "<li>Daftar 1</li>"
+const link = "https://www.youtube.com/"
+const a = 10
+const b = 5
+const c = a + b
+let headName = "<hi>Nama Saya Linda</hi>"
+let number = 1;
+let ok = "NO";
+let seen = true;
+
+//split reverse message
+let message = ref("Hai Vue Js");
+function balikanPesan() {
+  message.value = message.value.split('').reverse().join('');
+}
+
+//pengulangan
+let todos = [
+  { teks: 'Belajar JavaScript' },
+  { teks: 'Belajar Vue' },
+  {teks: 'Buat Proyek Keren'}
+]
+
+//input
+let pesan = ref("Hai Vue");
+
+// data siswa
+let data = [
+  { nama: 'Linda N.H', kelas: '12 RPL 1', jurusan: 'RPL' },
+  { nama: 'Intan Z.P', kelas: '12 RPL 2', jurusan: 'RPL' },
+  { nama: 'Ahmad R.F', kelas: '11 TKRO 2', jurusan: 'TKRO' },
+  { nama: 'Latief', kelas: '11 TBSM 2', jurusan: 'TBSM' },
+  { nama: 'Siti', kelas: '11 TKRO 1', jurusan: 'TKRO' }
+]
+</script>
+
+<template>
+  <div id="app">
+      <span>{{ msg }}</span><br>
+      <span v-html="rawHtml"></span><br>
+      <button :disabled="isButtonDisabled">Button</button><br>
+      <span v-bind="objectOfAttrs"></span><br>
+      <span style="color: red">Ini harus berwarna merah.</span><br>
+      <a v-bind:href="link"> youtube </a><br>
+      bil1={{ a }}<br>
+      bil2={{ b }}<br>
+      hasil={{ c }}<br>
+      <span v-html="headName"></span> <br>
+      {{ number + 1 }}<br>
+      {{ ok ? 'YES' : 'NO' }}<br>
+      {{ msg.split('').reverse().join('') }}<br>
+      <!--Direktif-->
+      <p v-if="seen">Sekarang Anda Bisa Melihatku</p>
+
+    </div>
+
+    <!--Split Button-->
+    <p>{{ message }}</p>
+    <button v-on:click="balikanPesan">Balikan Pesan</button>
+
+    <!--For-->
+    <br> pengulangan
+    <ol>
+      <li v-for="todo in todos">
+        {{ todo.teks }}
+      </li>
+    </ol>
+
+    <!--Input-->
+    <p>{{ pesan }}</p>
+    <input v-model="pesan">
+
+    <table border="1">
+      <tr> 
+       <th>No</th>
+       <th>Nama</th>
+       <th>Kelas</th>
+       <th>Jurusan</th>
+      </tr>
+      <tr v-for="siswa in data">
+        <td>{{ number++ }}</td>
+        <td>{{ siswa.nama }}</td>
+        <td>{{ siswa.kelas }}</td>
+        <td>{{ siswa.jurusan }}</td>
+      </tr>
+    </table>
+
+</template>
+  
